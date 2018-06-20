@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import List from 'components/List.js';
 import AddItemForm from 'components/AddItemForm.js';
+import Calculations from 'components/Calculations.js';
 import { ins, outs } from 'sample-data.js';
 
 class App extends Component {
@@ -37,12 +38,17 @@ class App extends Component {
     return (
       <Fragment>
         <h1>React Savings</h1>
-        <section>
-          <AddItemForm addItem={this.addInItem} />
-          <AddItemForm addItem={this.addOutItem} />
-          <List items={this.state.ins} />
-          <List items={this.state.outs} />
-        </section>
+        <div className="ins-outs">
+          <section>
+            <AddItemForm addItem={this.addInItem} />
+            <List items={this.state.ins} />
+          </section>
+          <section>
+            <AddItemForm addItem={this.addOutItem} />
+            <List items={this.state.outs} />
+          </section>
+        </div>
+        <Calculations {...this.state}/>
       </Fragment>
     );
   }

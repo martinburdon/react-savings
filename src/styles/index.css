@@ -9,12 +9,30 @@ body {
   font-size: 1.6rem;
 }
 
-section {
+.ins-outs {
   display: flex;
   flex-direction: row;
 }
 
-list-container {
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+input,
+button {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+section {
   flex: 1 1 50%;
   padding: 2rem;
 }
