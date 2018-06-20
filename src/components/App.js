@@ -1,20 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import List from 'components/List.js';
+import { ins, outs } from 'sample-data.js';
 
 class App extends Component {
   state = {
-    in: [
-      {
-        label: 'Salary',
-        amount: 10000
-      }
-    ],
-    out: [
-      {
-        label: 'Mortgage',
-        amount: 100
-      }
-    ]
+    ins,
+    outs
   };
 
   addAmount = () => {
@@ -33,8 +24,10 @@ class App extends Component {
     return (
       <Fragment>
         <h1>React Savings</h1>
-        <List items={this.state.in} />
-        <List items={this.state.out} />
+        <section>
+          <List items={this.state.ins} />
+          <List items={this.state.outs} />
+        </section>
       </Fragment>
     );
   }

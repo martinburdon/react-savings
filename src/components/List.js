@@ -3,7 +3,11 @@ import ListItem from 'components/ListItem.js';
 
 class List extends Component {
   render() {
-    return this.props.items.map(item => <ListItem {...item} />);
+    return (
+      <list-container>
+        {this.props.items.map(item => <ListItem {...item} />)}
+      </list-container>
+    )
   }
 }
 
