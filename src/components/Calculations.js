@@ -7,7 +7,7 @@ export default ({ ins, outs }) => {
 
   return (
     <calculations-container>
-      {savings}
+      You're saving <span className="saving-total">{savings}</span> every month
     </calculations-container>
   );
 };

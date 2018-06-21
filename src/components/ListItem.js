@@ -1,8 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default ({ label, amount }) => (
-  <list-item>
-    <span>{label}</span>
-    <span>{amount}</span>
-  </list-item>
-);
+class ListItem extends Component {
+  labelRef = React.createRef();
+  amountRef = React.createRef();
+
+  handleChange = event => {
+    event.preventDefault();
+    const item = {
+      ...this.props.item,
+      label: this.labelRef.current.value,
+      amount: parseFloat(this.amountRef.current.value || 0)
+    };
+    this.props.editItem(item, this.props.type);
+  };
+
+  render() {
+    return (
+      <list-item>
+        <input
+          name="label"
+          onChange={this.handleChange}
+          ref={this.labelRef}
+          type="text"
+          value={this.props.item.label}
+        />
+        <input
+          name="amount"
+          onChange={this.handleChange}
+          ref={this.amountRef}
+          type="text"
+          value={this.props.item.amount}
+        />
+      </list-item>
+    );
+  }
+}
+
+export default ListItem;

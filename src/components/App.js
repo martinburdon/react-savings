@@ -10,28 +10,36 @@ class App extends Component {
     outs
   };
 
-  addInItem = (payload) => {
-    const ins = [
-      ...this.state.ins,
-      payload
+  addItem = (payload, type) => {
+    const newItem = {
+      ...payload,
+      id: Date.now()
+    };
+    const newState = [
+      ...this.state[type],
+      newItem
     ];
-    this.setState({ ins });
-  }
-
-  addOutItem = (payload) => {
-    const outs = [
-      ...this.state.outs,
-      payload
-    ];
-    this.setState({ outs });
+    this.setState({ [type]: newState });
   }
 
   removeItem = () => {
 
   }
 
-  editItem = () => {
+  editItem = (payload, type) => {
+    const currentState = this.state[type];
+    const newState = currentState.map(item => {
+      if (item.id === payload.id) {
+        return {
+          ...item,
+          ...payload
+        };
+      }
 
+      return item;
+    });
+
+    this.setState({ [type]: newState });
   }
 
   render() {
@@ -40,12 +48,26 @@ class App extends Component {
         <h1>React Savings</h1>
         <div className="ins-outs">
           <section>
-            <AddItemForm addItem={this.addInItem} />
-            <List items={this.state.ins} />
+            <AddItemForm
+              addItem={this.addItem}
+              type="ins"
+            />
+            <List
+              items={this.state.ins}
+              editItem={this.editItem}
+              type="ins"
+            />
           </section>
           <section>
-            <AddItemForm addItem={this.addOutItem} />
-            <List items={this.state.outs} />
+            <AddItemForm
+              addItem={this.addItem}
+              type="outs"
+            />
+            <List
+              items={this.state.outs}
+              editItem={this.editItem}
+              type="outs"
+            />
           </section>
         </div>
         <Calculations {...this.state}/>

@@ -6,27 +6,28 @@ class AddItemForm extends Component {
 
   createItem = event => {
     event.preventDefault();
-    this.props.addItem({
+    const item = {
       label: this.labelRef.current.value,
       amount: parseFloat(this.amountRef.current.value)
-    });
+    };
+    this.props.addItem(item, this.props.type);
     event.currentTarget.reset();
   };
 
   render() {
     return (
-      <form className="" onSubmit={this.createItem}>
+      <form onSubmit={this.createItem}>
         <input
           name="label"
+          placeholder="Enter label"
           ref={this.labelRef}
           type="text"
-          placeholder="Enter label"
         />
         <input
           name="amount"
+          placeholder="Enter amount"
           ref={this.amountRef}
           type="text"
-          placeholder="Enter amount"
         />
         <button type="submit">+ Add Item</button>
       </form>

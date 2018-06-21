@@ -5,7 +5,18 @@ class List extends Component {
   render() {
     return (
       <list-container>
-        {this.props.items.map((item, i) => <ListItem key={i} {...item} />)}
+        {
+          this.props.items.map((item, i) => {
+            return (
+              <ListItem
+                key={item.id}
+                item={item}
+                editItem={this.props.editItem}
+                type={this.props.type}
+              />
+            );
+          })
+        }
       </list-container>
     )
   }
