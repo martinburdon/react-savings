@@ -14,9 +14,15 @@ class ListItem extends Component {
     this.props.editItem(item, this.props.type);
   };
 
+  handleRemoveItem = event => {
+    event.preventDefault();
+    this.props.removeItem(this.props.item, this.props.type);
+  };
+
   render() {
     return (
       <list-item>
+        <span onClick={this.handleRemoveItem}>X</span>
         <input
           name="label"
           onChange={this.handleChange}

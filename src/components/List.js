@@ -12,6 +12,7 @@ class List extends Component {
                 key={item.id}
                 item={item}
                 editItem={this.props.editItem}
+                removeItem={this.props.removeItem}
                 type={this.props.type}
               />
             );

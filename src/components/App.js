@@ -22,8 +22,10 @@ class App extends Component {
     this.setState({ [type]: newState });
   }
 
-  removeItem = () => {
-
+  removeItem = (payload, type) => {
+    const currentState = this.state[type];
+    const newState = currentState.filter(item => item.id === payload.id ? null : item);
+    this.setState({ [type]: newState });
   }
 
   editItem = (payload, type) => {
@@ -55,6 +57,7 @@ class App extends Component {
             <List
               items={this.state.ins}
               editItem={this.editItem}
+              removeItem={this.removeItem}
               type="ins"
             />
           </section>
@@ -66,6 +69,7 @@ class App extends Component {
             <List
               items={this.state.outs}
               editItem={this.editItem}
+              removeItem={this.removeItem}
               type="outs"
             />
           </section>
