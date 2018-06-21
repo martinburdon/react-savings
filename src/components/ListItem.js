@@ -9,7 +9,7 @@ class ListItem extends Component {
     const item = {
       ...this.props.item,
       label: this.labelRef.current.value,
-      amount: parseFloat(this.amountRef.current.value || 0)
+      amount: this.amountRef.current.value || 0
     };
     this.props.editItem(item, this.props.type);
   };
@@ -34,7 +34,7 @@ class ListItem extends Component {
           name="amount"
           onChange={this.handleChange}
           ref={this.amountRef}
-          type="text"
+          type="number"
           value={this.props.item.amount}
         />
       </list-item>
