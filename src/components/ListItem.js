@@ -22,7 +22,7 @@ class ListItem extends Component {
   render() {
     return (
       <list-item>
-        <span onClick={this.handleRemoveItem}>X</span>
+        <span className="remove-item" onClick={this.handleRemoveItem}>X</span>
         <input
           name="label"
           onChange={this.handleChange}
