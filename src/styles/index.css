@@ -1,44 +1,69 @@
+@font-face {
+  font-family: 'lato';
+  src: local("latoregular"), url("../fonts/lato/lato-regular.woff2") format("woff2"), url("../fonts/lato/lato-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'lato';
+  src: local("latobold"), url("../fonts/lato/lato-bold.woff2") format("woff2"), url("../fonts/lato/lato-bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal; }
+
+* {
+  font-family: lato, sans-serif; }
+
 html {
-  font-size: 10px;
-}
+  font-size: 10px; }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  font-size: 1.6rem;
-}
+  font-size: 1.6rem; }
 
 .ins-outs {
   display: flex;
-  flex-direction: row;
-}
+  flex-direction: row; }
 
 section {
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
-}
+  margin-bottom: 2rem; }
 
 input,
 button {
   font-size: 1.4rem;
   margin-bottom: 1rem;
-  padding: 1rem;
-}
+  padding: 1rem; }
 
 section {
   flex: 1 1 50%;
-  padding: 2rem;
-}
+  padding: 2rem; }
 
 list-item {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
-}
+  position: relative; }
+  list-item .remove-item {
+    position: absolute;
+    right: 0;
+    top: 0.5rem; }
+  list-item input {
+    border: none;
+    border-bottom: 0.1rem dashed #a0d5ff;
+    font-size: 1.8rem;
+    margin: 0;
+    outline: none;
+    padding: 0.2rem 0; }
+    list-item input:focus {
+      background: #eff8ff; }
+    list-item input[name="label"] {
+      color: #bbb;
+      margin-bottom: 0.6rem; }
+    list-item input[name="amount"] {
+      font-weight: 700; }

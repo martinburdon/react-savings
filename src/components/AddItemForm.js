@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addIncoming, addOutgoing } from 'actions/actions.js';
 
 class AddItemForm extends Component {
   labelRef = React.createRef();
@@ -10,7 +12,9 @@ class AddItemForm extends Component {
       label: this.labelRef.current.value,
       amount: parseFloat(this.amountRef.current.value)
     };
-    this.props.addItem(item, this.props.type);
+    const { type } = this.props;
+    const action = type === 'ins' ? addIncoming(item) : addOutgoing(item);
+    this.props.dispatch(action);
     event.currentTarget.reset();
   };
 
@@ -35,4 +39,4 @@ class AddItemForm extends Component {
   }
 }
 
-export default AddItemForm;
+export default connect()(AddItemForm);
