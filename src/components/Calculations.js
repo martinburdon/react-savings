@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default ({ ins, outs }) => {
-  const insTotal = ins.reduce((accumulator, item) => accumulator + item.amount, 0);
-  const outsTotal = outs.reduce((accumulator, item) => accumulator + item.amount, 0);
+const Calculations = props => {
+  const { incomings, outgoings } = props;
+  const insTotal = incomings.reduce((accumulator, item) => accumulator + item.amount, 0);
+  const outsTotal = outgoings.reduce((accumulator, item) => accumulator + item.amount, 0);
   const savings = parseFloat(insTotal - outsTotal).toFixed(2);
 
   return (
@@ -11,3 +13,10 @@ export default ({ ins, outs }) => {
     </calculations-container>
   );
 };
+
+const mapStateToProps = state => ({
+  incomings: state.incomings,
+  outgoings: state.outgoings
+});
+
+export default connect(mapStateToProps)(Calculations);

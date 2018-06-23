@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  removeIncoming,
+  removeOutgoing,
+  editIncoming,
+  editOutgoing
+} from 'actions/actions.js';
 
 class ListItem extends Component {
   labelRef = React.createRef();
@@ -11,12 +18,16 @@ class ListItem extends Component {
       label: this.labelRef.current.value,
       amount: this.amountRef.current.value || 0
     };
-    this.props.editItem(item, this.props.type);
+    const { type } = this.props;
+    const action = type === 'ins' ? editIncoming(item) : editOutgoing(item);
+    this.props.dispatch(action);
   };
 
   handleRemoveItem = event => {
     event.preventDefault();
-    this.props.removeItem(this.props.item, this.props.type);
+    const { type, item } = this.props;
+    const action = type === 'ins' ? removeIncoming(item.id) : removeOutgoing(item.id);
+    this.props.dispatch(action);
   };
 
   render() {
@@ -42,4 +53,4 @@ class ListItem extends Component {
   }
 }
 
-export default ListItem;
+export default connect()(ListItem);
