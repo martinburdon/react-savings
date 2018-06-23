@@ -3,6 +3,8 @@ import List from 'components/List.js';
 import AddItemForm from 'components/AddItemForm.js';
 import Calculations from 'components/Calculations.js';
 import { ins, outs } from 'sample-data.js';
+import { connect } from 'react-redux';
+import { addIncoming, addOutgoing } from 'actions/actions.js';
 
 class App extends Component {
   state = {
@@ -80,4 +82,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+ ...state
+});
+
+const mapDispatchToProps = dispatch => ({
+  addIncoming: () => dispatch(addIncoming()),
+  addOutgoing: () => dispatch(addOutgoing())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
